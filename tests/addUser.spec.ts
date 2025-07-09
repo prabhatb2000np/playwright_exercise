@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 // Store login session
 test.use({ storageState: 'storageState.json' });
 
-test('Access dashboard with saved login', async ({ page }) => {
+test('Add a user', async ({ page }) => {
 
     // Navigate to the follwing URL
     await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index');
@@ -23,8 +23,9 @@ test('Access dashboard with saved login', async ({ page }) => {
     await page.getByRole('button', { name: 'Add' }).click();
 
     // Assert that Add User text is seen
+    await page.locator('h6').last().waitFor();
     await expect(page.locator('h6').last()).toHaveText('Add User');
-    await page.getByText('Add User').waitFor();
+
 
     // Click dropdown menu so particular value can be selected
     await page.locator('.oxd-select-text-input').first().click();

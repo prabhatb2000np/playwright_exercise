@@ -57,7 +57,7 @@ test('Add an employee', async ({ page }) => {
     //
     await page.fill('.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input', randomStr);
     //
-    await page.getByRole('button', { name: 'Save' }).click();
+    await page.getByRole('button', { name: 'Save' }).nth(0).click();
     //
     await expect(page.locator('.orangehrm-horizontal-padding.orangehrm-vertical-padding > h6')).toHaveText('Personal Details', { timeout: 10000 });
 
@@ -79,10 +79,28 @@ test('Add an employee', async ({ page }) => {
     //
     await page.locator('div.--gender-grouped-field > div:nth-child(1) > div:nth-child(2) > div > label > span').nth(0).click();
     //
-    await page.getByRole('button', { name: 'Save' }).click();
+    await page.getByRole('button', { name: 'Save' }).nth(0).click();
     //
     await page.locator('.oxd-select-text-input').nth(2).click();
     await page.locator('[role="listbox"] >> text=A+').click();
     //
     await page.locator('form > div.oxd-form-row > div > div:nth-child(2) > div > div:nth-child(2) > input').nth(1).fill('Trc');
+    //
+    await page.getByRole('button', { name: 'Save' }).nth(1).click();
+    //
+    await page.getByRole('button', { name: 'Add' }).click();
+    //
+    await page.locator('text=Browse').click();
+    //
+    const fileInput1 = page.locator('input[type="file"]');
+    await fileInput1.setInputFiles('tests/files/sample-5.png');
+    //
+    await page.getByPlaceholder('Type comment here').fill('PPPPPP');
+    //
+    await page.getByRole('button', { name: 'Save' }).nth(2).click();
+    //
+    const row = page.locator('[role="row"]', { hasText: 'PPPPPP' });
+    await expect(row).toBeVisible();
+
+
 });

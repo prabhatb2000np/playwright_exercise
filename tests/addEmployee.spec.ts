@@ -40,9 +40,19 @@ test('Add an employee', async ({ page }) => {
     await page.fill('input[name="middleName"]', 'Singh');
     await page.fill('input[name="lastName"]', 'Jha');
 
-    const random = Math.random();
+    function getRandom10DigitString(): string {
+        let result = '';
+        for (let i = 0; i < 10; i++) {
+            result += Math.floor(Math.random() * 10); // adds a digit (0–9)
+        }
+        return result;
+    }
 
-    await page.fill('.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input', random.toString());
+    const randomStr = getRandom10DigitString()
+
+    console.log(randomStr);
+
+    await page.fill('.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input', randomStr);
 
     await page.getByRole('button', { name: 'Save' }).click();
 

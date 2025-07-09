@@ -35,11 +35,13 @@ test('Add an employee', async ({ page }) => {
     const fileInput = page.locator('input[type="file"]');
     await fileInput.setInputFiles('tests/files/sample-5.png');
 
+    //
     await page.locator('input[name="firstName"]').waitFor();
     await page.fill('input[name="firstName"]', 'Prabhat');
     await page.fill('input[name="middleName"]', 'Singh');
     await page.fill('input[name="lastName"]', 'Jha');
 
+    //
     function getRandom10DigitString(): string {
         let result = '';
         for (let i = 0; i < 10; i++) {
@@ -52,10 +54,11 @@ test('Add an employee', async ({ page }) => {
 
     console.log(randomStr);
 
+    //
     await page.fill('.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input', randomStr);
-
+    //
     await page.getByRole('button', { name: 'Save' }).click();
-
+    //
     await expect(page.locator('.orangehrm-horizontal-padding.orangehrm-vertical-padding > h6')).toHaveText('Personal Details', { timeout: 10000 });
 
     await page.locator('form > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(2) > input').waitFor();
@@ -63,25 +66,23 @@ test('Add an employee', async ({ page }) => {
     await page.fill('form > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div > div:nth-child(2) > input', '321321');
 
     await page.fill('form > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > input', '098098');
-
+    //
     await page.getByPlaceholder('yyyy-dd-mm').nth(0).fill('2026-09-27');
-
+    //
     await page.locator('.oxd-select-text-input').first().click();
     await page.locator('[role="listbox"] >> text=Afghan').click();
-
+    //
     await page.locator('.oxd-select-text-input').nth(1).click();
     await page.locator('[role="listbox"] >> text=Single').click();
-
+    //
     await page.getByPlaceholder('yyyy-dd-mm').nth(1).fill('2026-09-27');
-
+    //
     await page.locator('div.--gender-grouped-field > div:nth-child(1) > div:nth-child(2) > div > label > span').nth(0).click();
-
-    await page.locator('form > div.oxd-form-actions > button').nth(1).click();
-
+    //
+    await page.getByRole('button', { name: 'Save' }).click();
+    //
     await page.locator('.oxd-select-text-input').nth(2).click();
     await page.locator('[role="listbox"] >> text=A+').click();
-
+    //
     await page.locator('form > div.oxd-form-row > div > div:nth-child(2) > div > div:nth-child(2) > input').nth(1).fill('Trc');
-
-
 });

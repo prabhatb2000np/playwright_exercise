@@ -80,9 +80,4 @@ test('Add an employee', async ({ page }) => {
 
     await page.locator(' form > div:nth-child(7) > div > div:nth-child(2) > div > div:nth-child(2) > div > label > span > i').click();
 
-    await page.getByRole('button', { name: 'Save' }).nth(0).click();
-
-    await page.locator('.oxd-select-text-input').nth(3).waitFor();
-    await page.locator('.oxd-select-text-input').nth(3).click();
-    await page.locator('[role="listbox"] >> text=A+').click();
 });

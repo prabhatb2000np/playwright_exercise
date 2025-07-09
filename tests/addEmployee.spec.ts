@@ -71,4 +71,9 @@ test('Add an employee', async ({ page }) => {
 
     await page.locator('.oxd-select-text-input').nth(1).click();
     await page.locator('[role="listbox"] >> text=Single').click();
+
+    await page.getByPlaceholder('yyyy-dd-mm').nth(1).fill('2026-09-27');
+
+    await page.locator('input[type="radio"]').nth(0).click();
+
 });

@@ -40,7 +40,9 @@ test('Add an employee', async ({ page }) => {
     await page.fill('input[name="middleName"]', 'Singh');
     await page.fill('input[name="lastName"]', 'Jha');
 
-    await page.fill('.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input', '15381298');
+    const random = Math.random();
+
+    await page.fill('.oxd-grid-2.orangehrm-full-width-grid > div > div > div:nth-child(2) > input', random.toString());
 
     await page.getByRole('button', { name: 'Save' }).click();
 
@@ -52,6 +54,11 @@ test('Add an employee', async ({ page }) => {
 
     await page.fill('form > div:nth-child(3) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(2) > input', '098098');
 
-    await page.getByPlaceholder('yyyy-dd-mm').nth(0).click();
+    await page.getByPlaceholder('yyyy-dd-mm').nth(0).fill('2026-09-27');
 
+    await page.locator('.oxd-select-text-input').first().click();
+    await page.locator('[role="listbox"] >> text=Afghan').click();
+
+    await page.locator('.oxd-select-text-input').nth(1).click();
+    await page.locator('[role="listbox"] >> text=Single').click();
 });

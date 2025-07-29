@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('User can log in successfully', async ({ page }) => {
     // Navigate to the login page
-    await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login');
+    await page.goto('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login', { waitUntil: 'networkidle' });
 
     // Fill in the login form
     await page.fill('input[name="username"]', 'Admin');

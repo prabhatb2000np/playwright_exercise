@@ -1,12 +1,11 @@
 //playwright.config.ts
-
 import type { PlaywrightTestConfig } from '@playwright/test';
-
 const config: PlaywrightTestConfig = {
 
   testDir: './tests',
 
   timeout: 300 * 1000,
+  fullyParallel: false,
 
   expect: {
 
@@ -25,5 +24,4 @@ const config: PlaywrightTestConfig = {
   },
 
 };
-
 export default config;
